@@ -21,6 +21,12 @@ pipeline {
                     sh 'terraform validate'
                     sh 'terraform plan'
                     sh 'terraform apply -auto-approve'
+                    '''
+                    env.TF_VAR_FRONTEND_IP = sh(script: "terraform output -raw frontend_ip", returnStdout: true).trim()
+                    env.TF_VAR_BACKEND_IP = sh(script: "terraform output -raw backend_ip", returnStdout: true).trim()
+
+                    echo "Frontend IP: ${env.TF_VAR_FRONTEND_IP}"
+                    echo "Backend IP: ${env.TF_VAR_BACKEND_IP}"
                     }
                 }
             }
