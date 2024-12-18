@@ -31,7 +31,7 @@ resource "aws_instance" "frontend" { #amazon-playbook.yaml NGINX
   user_data = <<-EOF
   #!/bin/bash
   # New hostname and IP address
-  sudo hostnamectl set-hostname u21.local
+  sudo hostnamectl set-hostname c8.local
   hostname=$(hostname)
   public_ip="$(curl -s https://api64.ipify.org?format=json | jq -r .ip)"
 
