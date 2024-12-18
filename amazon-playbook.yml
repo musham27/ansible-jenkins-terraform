@@ -1,0 +1,36 @@
+---
+- hosts: frontend
+  become: true
+  tasks:
+    - name: Disable SELinux
+      selinux:
+        state: disabled
+
+    - name: Update DNF repositories
+      dnf:
+        name: "*"
+        state: latest
+
+    - name: Install Nginx
+      dnf:
+        name: nginx
+        state: present
+
+    - name: Start Nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: true  # Start Nginx service on system boot
+        
+    - name: Configure Nginx proxy
+      template:
+        src: nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+      notify:
+        - restart nginx
+
+  handlers:
+    - name: restart nginx
+      systemd:
+        name: nginx
+        state: restarted
