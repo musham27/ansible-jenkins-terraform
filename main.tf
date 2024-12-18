@@ -6,7 +6,6 @@ resource "aws_instance" "backend" { #ubuntu.yaml NETADATA
   ami                    = "ami-036841078a4b68e14"
   instance_type          = "t2.micro" 
   key_name               = "ohio"
-  vpc_security_group_ids = ["sg-04cb5f715d70d6f35"]
   tags = {
     Name = "u21.local"
   }
@@ -26,7 +25,6 @@ resource "aws_instance" "frontend" { #amazon-playbook.yaml NGINX
   ami                    = "ami-088d38b423bff245f"
   instance_type          = "t2.micro"
   key_name               = "ohio"
-  vpc_security_group_ids = ["sg-04cb5f715d70d6f35"]
   tags = {
     Name = "c8.local"
   }
