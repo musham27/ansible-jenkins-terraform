@@ -22,7 +22,7 @@ EOF
 
 }
 
-resource "aws_instance" "frontend" { #playbook.yaml NGINX
+resource "aws_instance" "frontend" { #amazon-playbook.yaml NGINX
   ami                    = "ami-088d38b423bff245f"
   instance_type          = "t2.micro"
   key_name               = "ohio"
