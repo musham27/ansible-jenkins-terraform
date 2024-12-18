@@ -35,8 +35,8 @@ pipeline {
             steps {
                 script {
                    sleep '90'
-                    ansiblePlaybook becomeUser: 'ec2-user', credentialsId: 'aws_credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/Challenge/ansible-jenkins-terraform/inventory.yaml', playbook: '/var/lib/jenkins/workspace/Challenge/ansible-jenkins-terraform/amazon-playbook.yml', vaultTmpPath: ''
-                    ansiblePlaybook become: true, credentialsId: 'aws_credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/Challenge/ansible-jenkins-terraform/inventory.yaml', playbook: '/var/lib/jenkins/workspace/Challenge/ansible-jenkins-terraform/ubuntu-playbook.yml', vaultTmpPath: ''
+                    ansiblePlaybook becomeUser: 'ec2-user', credentialsId: 'amazon_linux', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/Challenge/ansible-jenkins-terraform/inventory.yaml', playbook: '/var/lib/jenkins/workspace/Challenge/ansible-jenkins-terraform/amazon-playbook.yml', vaultTmpPath: ''
+                    ansiblePlaybook become: true, credentialsId: 'ubuntu', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/Challenge/ansible-jenkins-terraform/inventory.yaml', playbook: '/var/lib/jenkins/workspace/Challenge/ansible-jenkins-terraform/ubuntu-playbook.yml', vaultTmpPath: ''
                 }
             }
         }
