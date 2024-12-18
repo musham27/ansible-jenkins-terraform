@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        AWS_ACCESS_KEY_ID = credentials('aws_credentials')  // ID from Jenkins credentials store
+        AWS_SECRET_ACCESS_KEY = credentials('aws_credentials')  // ID from Jenkins credentials store
+}
 
     stages {
         
@@ -30,9 +34,9 @@ pipeline {
         stage('Ansible Deployment') {
             steps {
                 script {
-                   sleep '360'
-                    ansiblePlaybook becomeUser: 'ec2-user', credentialsId: 'amazonlinux', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/Challenge/ansible-jenkins-terraform/inventory.yaml', playbook: '/var/lib/jenkins/workspace/Challenge/ansible-jenkins-terraform/amazon-playbook.yml', vaultTmpPath: ''
-                    ansiblePlaybook become: true, credentialsId: 'ubuntuuser', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/Challenge/ansible-jenkins-terraform/inventory.yaml', playbook: '/var/lib/jenkins/workspace/Challenge/ansible-jenkins-terraform/ubuntu-playbook.yml', vaultTmpPath: ''
+                   sleep '90'
+                    ansiblePlaybook becomeUser: 'ec2-user', credentialsId: 'aws_credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/Challenge/ansible-jenkins-terraform/inventory.yaml', playbook: '/var/lib/jenkins/workspace/Challenge/ansible-jenkins-terraform/amazon-playbook.yml', vaultTmpPath: ''
+                    ansiblePlaybook become: true, credentialsId: 'aws_credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/Challenge/ansible-jenkins-terraform/inventory.yaml', playbook: '/var/lib/jenkins/workspace/Challenge/ansible-jenkins-terraform/ubuntu-playbook.yml', vaultTmpPath: ''
                 }
             }
         }
