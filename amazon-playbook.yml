@@ -34,3 +34,9 @@
       systemd:
         name: nginx
         state: restarted
+- name: Ensure libselinux-python is installed
+  package:
+    name: libselinux-python
+    state: present
+  become: yes
+
